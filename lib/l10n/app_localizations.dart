@@ -272,6 +272,12 @@ abstract class AppLocalizations {
   /// **'Compress Files. This will reduce the size of the OTR / O2R.'**
   String get folderContentView_compressToggle;
 
+  /// No description provided for @folderContentView_keepFolderOpenToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.'**
+  String get folderContentView_keepFolderOpenToggle;
+
   /// No description provided for @folderContentView_selectButton.
   ///
   /// In en, this message translates to:
@@ -283,6 +289,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stage Textures'**
   String get folderContentView_stageTextures;
+
+  /// No description provided for @folderContentView_scanAndStageTextures.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan & Stage Textures'**
+  String get folderContentView_scanAndStageTextures;
 
   /// No description provided for @createCustomSequences_addCustomSequences.
   ///
@@ -314,6 +326,18 @@ abstract class AppLocalizations {
   /// **'Stage Files'**
   String get createCustomSequences_stageFiles;
 
+  /// No description provided for @createCustomSequences_scanAndStageFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan & Stage Files'**
+  String get createCustomSequences_scanAndStageFiles;
+
+  /// No description provided for @createCustomSequences_keepFolderOpenToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.'**
+  String get createCustomSequences_keepFolderOpenToggle;
+
   /// No description provided for @createFinishScreen_finish.
   ///
   /// In en, this message translates to:
@@ -326,11 +350,17 @@ abstract class AppLocalizations {
   /// **'Review your OTR / O2R details'**
   String get createFinishScreen_finishSubtitle;
 
-  /// No description provided for @createFinishScreen_generateOtr.
+  /// No description provided for @createFinishScreen_generateFile.
   ///
   /// In en, this message translates to:
-  /// **'Generate OTR / O2R'**
-  String get createFinishScreen_generateOtr;
+  /// **'Generate {extension}'**
+  String createFinishScreen_generateFile(String extension);
+
+  /// No description provided for @createFinishScreen_outputFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Output format'**
+  String get createFinishScreen_outputFormat;
 
   /// No description provided for @components_ephemeralBar_finalizeOtr.
   ///
@@ -374,6 +404,18 @@ abstract class AppLocalizations {
   /// **'Stage Files'**
   String get createCustomScreen_stageFiles;
 
+  /// No description provided for @createCustomScreen_scanAndStageFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan & Stage Files'**
+  String get createCustomScreen_scanAndStageFiles;
+
+  /// No description provided for @createCustomScreen_keepFolderOpenToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.'**
+  String get createCustomScreen_keepFolderOpenToggle;
+
   /// No description provided for @inspectOtrScreen_inspectOtr.
   ///
   /// In en, this message translates to:
@@ -403,6 +445,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search'**
   String get inspectOtrScreen_search;
+
+  /// No description provided for @inspectOtrScreen_extractButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Extract All'**
+  String get inspectOtrScreen_extractButton;
+
+  /// No description provided for @inspectOtrScreen_extracting.
+  ///
+  /// In en, this message translates to:
+  /// **'Extracting'**
+  String get inspectOtrScreen_extracting;
+
+  /// No description provided for @inspectOtrScreen_extractComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Extraction complete'**
+  String get inspectOtrScreen_extractComplete;
+
+  /// No description provided for @inspectOtrScreen_extractFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to extract archive'**
+  String get inspectOtrScreen_extractFailed;
 
   /// No description provided for @gameSelectionScreen_title.
   ///

@@ -55,8 +55,12 @@ class Arc {
       if (fileName != null && fileName != '(signature)' && fileName != '(listfile)' && fileName != '(attributes)') {
         files.add(fileName);
         if(onFile != null) {
-          final file = mpqArchive.openFileEx(fileName, 0);
-          await onFile(fileName, file.read(file.size()));
+          try {
+            final file = mpqArchive.openFileEx(fileName, 0);
+            await onFile(fileName, file.read(file.size()));
+          } catch (e) {
+            log('Skipping file $fileName: $e');
+          }
         }
       }
 

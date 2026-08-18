@@ -27,12 +27,14 @@ import 'package:retro/features/inspect_otr/inspect_otr_viewmodel.dart';
 import 'package:retro/ui/components/ephemeral_bar.dart';
 import 'package:retro/ui/theme/theme.dart';
 import 'package:retro/utils/git.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:window_size/window_size.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final errorFile = File('latest.log')
-    ..createSync();
+  final logDir = await getApplicationSupportDirectory();
+  final errorFile = File('${logDir.path}/latest.log')
+    ..createSync(recursive: true);
 
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowTitle('Retro');
@@ -42,11 +44,11 @@ void main() {
 
   RetroContext.git = GitLoader.getGitInfo();
 
-  runZonedGuarded<Future<void>>(bindApp, (error, stack) async {
+  unawaited(runZonedGuarded<Future<void>>(bindApp, (error, stack) async {
     // Log to file
     final errorString = 'Error: $error\nStack: $stack';
     await errorFile.writeAsString(errorString, mode: FileMode.append);
-  });
+  }));
 }
 
 Future<void> bindApp() async {

@@ -28,8 +28,10 @@ class CreateFinishViewModel with ChangeNotifier {
   bool isGenerating = false;
   bool prependAlt = false;
   bool compressFiles = false;
+  bool keepFolderOpenAfterStaging = false;
   int totalFiles = 0;
   int filesProcessed = 0;
+  String outputExtension = 'o2r';
 
   String displayState() {
     final hasStagedFiles = entries.isNotEmpty;
@@ -48,6 +50,16 @@ class CreateFinishViewModel with ChangeNotifier {
 
   Future<void> onToggleCompressFiles(bool newCompressFilesValue) async {
     compressFiles = newCompressFilesValue;
+    notifyListeners();
+  }
+
+  Future<void> onToggleKeepFolderOpenAfterStaging(bool newValue) async {
+    keepFolderOpenAfterStaging = newValue;
+    notifyListeners();
+  }
+
+  void onSelectOutputExtension(String newOutputExtension) {
+    outputExtension = newOutputExtension;
     notifyListeners();
   }
 
@@ -160,15 +172,21 @@ class CreateFinishViewModel with ChangeNotifier {
   }
 
   Future<void> onGenerateOTR(Function onCompletion) async {
-    final outputFile = await FilePicker.platform.saveFile(
+    // Filter for the currently selected output extension only.
+    var outputFile = await FilePicker.platform.saveFile(
       dialogTitle: 'Please select an output file:',
-      fileName: 'generated.o2r',
+      fileName: 'generated.$outputExtension',
       type: FileType.custom,
-      allowedExtensions: ['otr', 'o2r'],
+      allowedExtensions: [outputExtension],
     );
 
     if (outputFile == null) {
       return;
+    }
+
+    // Append the extension if it's missing or doesn't match the selected output type.
+    if (dartp.extension(outputFile).toLowerCase() != '.$outputExtension') {
+      outputFile = '$outputFile.$outputExtension';
     }
 
     final mpqOut = File(outputFile);
@@ -203,6 +221,11 @@ class CreateFinishViewModel with ChangeNotifier {
         notifyListeners();
       } else if (message is String) {
         presentErrorSnackbar(message);
+      } else if (message is List) {
+        final errorDescription = message.isNotEmpty ? message[0] : 'Unknown error';
+        presentErrorSnackbar('Failed to generate OTR: $errorDescription');
+        receivePort.close();
+        break;
       } else {
         receivePort.close();
         break;

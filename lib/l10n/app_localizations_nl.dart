@@ -105,10 +105,17 @@ class AppLocalizationsNl extends AppLocalizations {
       'Bestanden comprimeren. Dit zal de grootte van de OTR / O2R verkleinen.';
 
   @override
+  String get folderContentView_keepFolderOpenToggle =>
+      'Map geopend houden na het stagen. Retro scant opnieuw naar wijzigingen in plaats van terug te gaan naar het hoofdmenu.';
+
+  @override
   String get folderContentView_selectButton => 'Selecteer';
 
   @override
   String get folderContentView_stageTextures => 'Stage-Textures';
+
+  @override
+  String get folderContentView_scanAndStageTextures => 'Scannen en stagen';
 
   @override
   String get createCustomSequences_addCustomSequences =>
@@ -128,6 +135,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get createCustomSequences_stageFiles => 'Stage-bestanden';
 
   @override
+  String get createCustomSequences_scanAndStageFiles => 'Scannen en stagen';
+
+  @override
+  String get createCustomSequences_keepFolderOpenToggle =>
+      'Map geopend houden na het stagen. Retro scant opnieuw naar wijzigingen in plaats van terug te gaan naar het hoofdmenu.';
+
+  @override
   String get createFinishScreen_finish => 'Klaar';
 
   @override
@@ -135,7 +149,12 @@ class AppLocalizationsNl extends AppLocalizations {
       'Controleer jouw OTR / O2R-gegevens';
 
   @override
-  String get createFinishScreen_generateOtr => 'Generate OTR / O2R';
+  String createFinishScreen_generateFile(String extension) {
+    return 'Genereer $extension';
+  }
+
+  @override
+  String get createFinishScreen_outputFormat => 'Uitvoerformaat';
 
   @override
   String get components_ephemeralBar_finalizeOtr =>
@@ -161,6 +180,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get createCustomScreen_stageFiles => 'Stage-bestanden';
 
   @override
+  String get createCustomScreen_scanAndStageFiles => 'Scannen en stagen';
+
+  @override
+  String get createCustomScreen_keepFolderOpenToggle =>
+      'Map geopend houden na het stagen. Retro scant opnieuw naar wijzigingen in plaats van terug te gaan naar het hoofdmenu.';
+
+  @override
   String get inspectOtrScreen_inspectOtr => 'Inspecteer OTR / O2R';
 
   @override
@@ -175,6 +201,18 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get inspectOtrScreen_search => 'Zoek';
+
+  @override
+  String get inspectOtrScreen_extractButton => 'Alles uitpakken';
+
+  @override
+  String get inspectOtrScreen_extracting => 'Uitpakken';
+
+  @override
+  String get inspectOtrScreen_extractComplete => 'Uitpakken voltooid';
+
+  @override
+  String get inspectOtrScreen_extractFailed => 'Uitpakken van archief mislukt';
 
   @override
   String get gameSelectionScreen_title => 'Specifieke Tools';

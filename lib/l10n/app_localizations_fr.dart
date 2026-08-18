@@ -107,10 +107,18 @@ class AppLocalizationsFr extends AppLocalizations {
       'Compresser les fichiers. Cela réduira la taille de l\'OTR / O2R.';
 
   @override
+  String get folderContentView_keepFolderOpenToggle =>
+      'Garder le dossier ouvert après l\'indexation. Retro recherchera à nouveau les modifications au lieu de revenir au menu principal.';
+
+  @override
   String get folderContentView_selectButton => 'Sélectionner';
 
   @override
   String get folderContentView_stageTextures => 'Indexer les textures';
+
+  @override
+  String get folderContentView_scanAndStageTextures =>
+      'Scanner et indexer les textures';
 
   @override
   String get createCustomSequences_addCustomSequences =>
@@ -131,6 +139,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get createCustomSequences_stageFiles => 'Indexer les fichiers';
 
   @override
+  String get createCustomSequences_scanAndStageFiles =>
+      'Scanner et indexer les fichiers';
+
+  @override
+  String get createCustomSequences_keepFolderOpenToggle =>
+      'Garder le dossier ouvert après l\'indexation. Retro recherchera à nouveau les modifications au lieu de revenir au menu principal.';
+
+  @override
   String get createFinishScreen_finish => 'Terminer';
 
   @override
@@ -138,7 +154,12 @@ class AppLocalizationsFr extends AppLocalizations {
       'Vérifiez les détails de votre OTR / O2R';
 
   @override
-  String get createFinishScreen_generateOtr => 'Générer l\'OTR / O2R';
+  String createFinishScreen_generateFile(String extension) {
+    return 'Générer $extension';
+  }
+
+  @override
+  String get createFinishScreen_outputFormat => 'Format de sortie';
 
   @override
   String get components_ephemeralBar_finalizeOtr => 'Finaliser l\'OTR / O2R ⚡️';
@@ -163,6 +184,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get createCustomScreen_stageFiles => 'Indexer les fichiers';
 
   @override
+  String get createCustomScreen_scanAndStageFiles =>
+      'Scanner et indexer les fichiers';
+
+  @override
+  String get createCustomScreen_keepFolderOpenToggle =>
+      'Garder le dossier ouvert après l\'indexation. Retro recherchera à nouveau les modifications au lieu de revenir au menu principal.';
+
+  @override
   String get inspectOtrScreen_inspectOtr => 'Inspecter un OTR / O2R';
 
   @override
@@ -177,6 +206,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get inspectOtrScreen_search => 'Rechercher';
+
+  @override
+  String get inspectOtrScreen_extractButton => 'Tout extraire';
+
+  @override
+  String get inspectOtrScreen_extracting => 'Extraction en cours';
+
+  @override
+  String get inspectOtrScreen_extractComplete => 'Extraction terminée';
+
+  @override
+  String get inspectOtrScreen_extractFailed =>
+      'Échec de l\'extraction de l\'archive';
 
   @override
   String get gameSelectionScreen_title => 'Outils Spécifiques au Jeu';

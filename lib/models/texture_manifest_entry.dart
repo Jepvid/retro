@@ -30,6 +30,10 @@ class TextureManifestEntry {
   TextureEntryKind kind = TextureEntryKind.replacement;
   String? targetName;
 
+  /// Content hash of the source file as of the most recent scan. Not
+  /// persisted to the manifest.
+  String? sourceHash;
+
   Map<String, dynamic> toJson() => {
     'hash': hash,
     'textureType': textureType.value,

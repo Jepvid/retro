@@ -30,6 +30,29 @@ class _CreateCustomScreenState extends State<CreateCustomScreen> {
     final finishViewModel = Provider.of<CreateFinishViewModel>(context);
     final i18n = AppLocalizations.of(context)!;
 
+    Future<void> onStagePressed() async {
+      if (finishViewModel.keepFolderOpenAfterStaging) {
+        if (finishViewModel.entries.isEmpty) {
+          // Staged queue is empty.
+          viewModel.stagedHashes.clear();
+        }
+        await viewModel.rescanFiles();
+        if (viewModel.files.isNotEmpty) {
+          finishViewModel.onAddCustomStageEntries(viewModel.files, viewModel.path);
+          await viewModel.recordStagedHashes();
+          viewModel.onSelectedFiles([]);
+        }
+      } else {
+        finishViewModel.onAddCustomStageEntries(viewModel.files, viewModel.path);
+        viewModel.reset();
+        Navigator.of(context).popUntil(ModalRoute.withName('/create_selection'));
+      }
+    }
+
+    final canPressStage = finishViewModel.keepFolderOpenAfterStaging
+        ? viewModel.path.isNotEmpty
+        : viewModel.files.isNotEmpty && viewModel.path.isNotEmpty;
+
     return CustomScaffold(
       title: i18n.createCustomScreen_title,
       subtitle: i18n.createCustomScreen_subtitle,
@@ -80,26 +103,27 @@ class _CreateCustomScreenState extends State<CreateCustomScreen> {
                   },
                 ),
               ),
+              Row(children: [
+                Switch(
+                  activeColor: Colors.blue,
+                  value: finishViewModel.keepFolderOpenAfterStaging,
+                  onChanged: (value) {
+                    finishViewModel.onToggleKeepFolderOpenAfterStaging(value);
+                  },
+                ),
+                Text(i18n.createCustomScreen_keepFolderOpenToggle),
+              ],),
               ElevatedButton(
-                onPressed: viewModel.files.isNotEmpty && viewModel.path.isNotEmpty
-                    ? () {
-                        finishViewModel.onAddCustomStageEntries(
-                          viewModel.files,
-                          viewModel.path,
-                        );
-                        viewModel.reset();
-                        Navigator.of(context).popUntil(
-                          ModalRoute.withName('/create_selection'),
-                        );
-                      }
-                    : null,
+                onPressed: canPressStage ? onStagePressed : null,
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(
                     MediaQuery.of(context).size.width * 0.5,
                     50,
                   ),
                 ),
-                child: Text(i18n.createCustomScreen_stageFiles),
+                child: Text(finishViewModel.keepFolderOpenAfterStaging
+                    ? i18n.createCustomScreen_scanAndStageFiles
+                    : i18n.createCustomScreen_stageFiles),
               ),
             ],
           ),
