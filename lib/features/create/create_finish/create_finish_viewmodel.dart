@@ -203,6 +203,11 @@ class CreateFinishViewModel with ChangeNotifier {
         notifyListeners();
       } else if (message is String) {
         presentErrorSnackbar(message);
+      } else if (message is List) {
+        final errorDescription = message.isNotEmpty ? message[0] : 'Unknown error';
+        presentErrorSnackbar('Failed to generate OTR: $errorDescription');
+        receivePort.close();
+        break;
       } else {
         receivePort.close();
         break;
