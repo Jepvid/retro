@@ -96,7 +96,7 @@ jobs:
       with:
         name: linux
         path: retro.AppImage
-  comment-nightly-links:
+  update-nightly-links:
     if: github.event_name == 'pull_request'
     needs: [build-macos, build-windows, build-linux]
     runs-on: ubuntu-latest
@@ -105,28 +105,29 @@ jobs:
       with:
         script: |
           const { owner, repo } = context.repo;
+          const pull_number = context.issue.number;
           const runId = context.runId;
           const base = `https://nightly.link/${owner}/${repo}/actions/runs/${runId}`;
-          const marker = '<!-- nightly-build-links -->';
-          const body = [
-            marker,
+
+          const startMarker = '<!-- nightly-build-links:start -->';
+          const endMarker = '<!-- nightly-build-links:end -->';
+          const section = [
+            startMarker,
             '### Nightly build downloads',
             `- [macOS](${base}/macos.zip)`,
             `- [Windows](${base}/windows.zip)`,
             `- [Linux (AppImage)](${base}/linux.zip)`,
             '',
             `Built from ${context.sha.substring(0, 7)}`,
+            endMarker,
           ].join('\n');
 
-          const { data: comments } = await github.rest.issues.listComments({
-            owner,
-            repo,
-            issue_number: context.issue.number,
-          });
-          const existing = comments.find((c) => c.body.includes(marker));
+          const { data: pr } = await github.rest.pulls.get({ owner, repo, pull_number });
+          const oldBody = pr.body || '';
+          const sectionRegex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`);
 
-          if (existing) {
-            await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
-          } else {
-            await github.rest.issues.createComment({ owner, repo, issue_number: context.issue.number, body });
-          }
+          const newBody = sectionRegex.test(oldBody)
+            ? oldBody.replace(sectionRegex, section)
+            : `${oldBody}\n\n${section}`.trim();
+
+          await github.rest.pulls.update({ owner, repo, pull_number, body: newBody });
