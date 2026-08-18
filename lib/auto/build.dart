@@ -1,3 +1,3 @@
-const String branch = 'v0.2.1';
-const String commitHash = '705c17d';
-const String commitDate = '2024-06-03 23:53:34 -0600';
+const String branch = 'main';
+const String commitHash = '9f6a413';
+const String commitDate = '2026-08-11 09:41:32 -0600';
