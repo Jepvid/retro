@@ -65,11 +65,26 @@ class _CreateCustomSequencesScreenState extends State<CreateCustomSequencesScree
                                 },),),),
               if (!viewModel.isProcessing && viewModel.sequenceMetaPairs.isEmpty)
                 const Spacer(),
+                Row(children: [
+                  Switch(
+                    activeColor: Colors.blue,
+                    value: finishViewModel.keepFolderOpenAfterStaging,
+                    onChanged: (value) {
+                      finishViewModel.onToggleKeepFolderOpenAfterStaging(value);
+                    },
+                  ),
+                  Text(i18n.createCustomSequences_keepFolderOpenToggle),
+                ],),
                 ElevatedButton(
-                  onPressed: viewModel.sequenceMetaPairs.isNotEmpty ? () {
+                  onPressed: viewModel.sequenceMetaPairs.isNotEmpty ? () async {
                     finishViewModel.onAddCustomSequenceEntry(viewModel.sequenceMetaPairs, 'custom/music');
-                    viewModel.reset();
-                    Navigator.of(context).popUntil(ModalRoute.withName('/create_selection'));
+                    if (finishViewModel.keepFolderOpenAfterStaging) {
+                      await viewModel.recordStagedHashes();
+                      await viewModel.rescanFolder();
+                    } else {
+                      viewModel.reset();
+                      Navigator.of(context).popUntil(ModalRoute.withName('/create_selection'));
+                    }
                   } : null,
                   style: ElevatedButton.styleFrom(minimumSize: Size(
                     MediaQuery.of(context).size.width * 0.5, 50,),

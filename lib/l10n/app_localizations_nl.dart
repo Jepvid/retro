@@ -105,6 +105,10 @@ class AppLocalizationsNl extends AppLocalizations {
       'Bestanden comprimeren. Dit zal de grootte van de OTR / O2R verkleinen.';
 
   @override
+  String get folderContentView_keepFolderOpenToggle =>
+      'Map geopend houden na het stagen. Retro scant opnieuw naar wijzigingen in plaats van terug te gaan naar het hoofdmenu.';
+
+  @override
   String get folderContentView_selectButton => 'Selecteer';
 
   @override
@@ -126,6 +130,10 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get createCustomSequences_stageFiles => 'Stage-bestanden';
+
+  @override
+  String get createCustomSequences_keepFolderOpenToggle =>
+      'Map geopend houden na het stagen. Retro scant opnieuw naar wijzigingen in plaats van terug te gaan naar het hoofdmenu.';
 
   @override
   String get createFinishScreen_finish => 'Klaar';
@@ -159,6 +167,10 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get createCustomScreen_stageFiles => 'Stage-bestanden';
+
+  @override
+  String get createCustomScreen_keepFolderOpenToggle =>
+      'Map geopend houden na het stagen. Retro scant opnieuw naar wijzigingen in plaats van terug te gaan naar het hoofdmenu.';
 
   @override
   String get inspectOtrScreen_inspectOtr => 'Inspecteer OTR / O2R';

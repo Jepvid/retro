@@ -107,6 +107,10 @@ class AppLocalizationsEs extends AppLocalizations {
       'Comprimir archivos, esto puede reducir el tamaño del OTR / O2R';
 
   @override
+  String get folderContentView_keepFolderOpenToggle =>
+      'Mantener la carpeta abierta después de agregar. Retro volverá a escanear los cambios en lugar de regresar al menú principal.';
+
+  @override
   String get folderContentView_selectButton => 'Seleccionar';
 
   @override
@@ -129,6 +133,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get createCustomSequences_stageFiles => 'Agregar archivos';
+
+  @override
+  String get createCustomSequences_keepFolderOpenToggle =>
+      'Mantener la carpeta abierta después de agregar. Retro volverá a escanear los cambios en lugar de regresar al menú principal.';
 
   @override
   String get createFinishScreen_finish => 'Finalizar';
@@ -161,6 +169,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get createCustomScreen_stageFiles => 'Agregar archivos';
+
+  @override
+  String get createCustomScreen_keepFolderOpenToggle =>
+      'Mantener la carpeta abierta después de agregar. Retro volverá a escanear los cambios en lugar de regresar al menú principal.';
 
   @override
   String get inspectOtrScreen_inspectOtr => 'Inspeccionar OTR / O2R';

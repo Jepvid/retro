@@ -107,6 +107,10 @@ class AppLocalizationsDe extends AppLocalizations {
       'Dateien komprimieren. Dadurch wird die Größe der OTR / O2R reduziert.';
 
   @override
+  String get folderContentView_keepFolderOpenToggle =>
+      'Ordner nach dem Indexieren geöffnet lassen. Retro sucht erneut nach Änderungen, anstatt zum Hauptmenü zurückzukehren.';
+
+  @override
   String get folderContentView_selectButton => 'Wähle';
 
   @override
@@ -129,6 +133,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get createCustomSequences_stageFiles => 'Dateien indexieren';
+
+  @override
+  String get createCustomSequences_keepFolderOpenToggle =>
+      'Ordner nach dem Indexieren geöffnet lassen. Retro sucht erneut nach Änderungen, anstatt zum Hauptmenü zurückzukehren.';
 
   @override
   String get createFinishScreen_finish => 'Beenden';
@@ -161,6 +169,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get createCustomScreen_stageFiles => 'Stage Files';
+
+  @override
+  String get createCustomScreen_keepFolderOpenToggle =>
+      'Ordner nach dem Indexieren geöffnet lassen. Retro sucht erneut nach Änderungen, anstatt zum Hauptmenü zurückzukehren.';
 
   @override
   String get inspectOtrScreen_inspectOtr => 'Überprüfe OTR / O2R';
