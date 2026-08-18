@@ -24,6 +24,26 @@ class _CreateCustomSequencesScreenState extends State<CreateCustomSequencesScree
       return path.split('$basePath/').last.split('.').first;
     }
 
+    Future<void> onStagePressed() async {
+      if (finishViewModel.keepFolderOpenAfterStaging) {
+        // Re-scan first so edits made since the last stage are picked up.
+        await viewModel.rescanFolder();
+        if (viewModel.sequenceMetaPairs.isNotEmpty) {
+          finishViewModel.onAddCustomSequenceEntry(viewModel.sequenceMetaPairs, 'custom/music');
+          await viewModel.recordStagedHashes();
+          viewModel.clearSequenceMetaPairs();
+        }
+      } else {
+        finishViewModel.onAddCustomSequenceEntry(viewModel.sequenceMetaPairs, 'custom/music');
+        viewModel.reset();
+        Navigator.of(context).popUntil(ModalRoute.withName('/create_selection'));
+      }
+    }
+
+    final canPressStage = finishViewModel.keepFolderOpenAfterStaging
+        ? viewModel.selectedFolderPath != null
+        : viewModel.sequenceMetaPairs.isNotEmpty;
+
     return CustomScaffold(
         title: i18n.createCustomSequences_addCustomSequences,
         subtitle: i18n.createCustomSequences_addCustomSequencesDescription,
@@ -65,16 +85,24 @@ class _CreateCustomSequencesScreenState extends State<CreateCustomSequencesScree
                                 },),),),
               if (!viewModel.isProcessing && viewModel.sequenceMetaPairs.isEmpty)
                 const Spacer(),
+                Row(children: [
+                  Switch(
+                    activeColor: Colors.blue,
+                    value: finishViewModel.keepFolderOpenAfterStaging,
+                    onChanged: (value) {
+                      finishViewModel.onToggleKeepFolderOpenAfterStaging(value);
+                    },
+                  ),
+                  Text(i18n.createCustomSequences_keepFolderOpenToggle),
+                ],),
                 ElevatedButton(
-                  onPressed: viewModel.sequenceMetaPairs.isNotEmpty ? () {
-                    finishViewModel.onAddCustomSequenceEntry(viewModel.sequenceMetaPairs, 'custom/music');
-                    viewModel.reset();
-                    Navigator.of(context).popUntil(ModalRoute.withName('/create_selection'));
-                  } : null,
+                  onPressed: canPressStage ? onStagePressed : null,
                   style: ElevatedButton.styleFrom(minimumSize: Size(
                     MediaQuery.of(context).size.width * 0.5, 50,),
                   ),
-                  child: Text(i18n.createCustomSequences_stageFiles),
+                  child: Text(finishViewModel.keepFolderOpenAfterStaging
+                      ? i18n.createCustomSequences_scanAndStageFiles
+                      : i18n.createCustomSequences_stageFiles),
                 )
             ],),
         ),),

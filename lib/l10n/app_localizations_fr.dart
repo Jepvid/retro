@@ -107,10 +107,18 @@ class AppLocalizationsFr extends AppLocalizations {
       'Compresser les fichiers. Cela réduira la taille de l\'OTR / O2R.';
 
   @override
+  String get folderContentView_keepFolderOpenToggle =>
+      'Garder le dossier ouvert après l\'indexation. Retro recherchera à nouveau les modifications au lieu de revenir au menu principal.';
+
+  @override
   String get folderContentView_selectButton => 'Sélectionner';
 
   @override
   String get folderContentView_stageTextures => 'Indexer les textures';
+
+  @override
+  String get folderContentView_scanAndStageTextures =>
+      'Scanner et indexer les textures';
 
   @override
   String get createCustomSequences_addCustomSequences =>
@@ -129,6 +137,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get createCustomSequences_stageFiles => 'Indexer les fichiers';
+
+  @override
+  String get createCustomSequences_scanAndStageFiles =>
+      'Scanner et indexer les fichiers';
+
+  @override
+  String get createCustomSequences_keepFolderOpenToggle =>
+      'Garder le dossier ouvert après l\'indexation. Retro recherchera à nouveau les modifications au lieu de revenir au menu principal.';
 
   @override
   String get createFinishScreen_finish => 'Terminer';
@@ -161,6 +177,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get createCustomScreen_stageFiles => 'Indexer les fichiers';
+
+  @override
+  String get createCustomScreen_scanAndStageFiles =>
+      'Scanner et indexer les fichiers';
+
+  @override
+  String get createCustomScreen_keepFolderOpenToggle =>
+      'Garder le dossier ouvert après l\'indexation. Retro recherchera à nouveau les modifications au lieu de revenir au menu principal.';
 
   @override
   String get inspectOtrScreen_inspectOtr => 'Inspecter un OTR / O2R';

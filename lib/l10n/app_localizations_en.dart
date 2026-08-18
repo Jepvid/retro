@@ -106,10 +106,17 @@ class AppLocalizationsEn extends AppLocalizations {
       'Compress Files. This will reduce the size of the OTR / O2R.';
 
   @override
+  String get folderContentView_keepFolderOpenToggle =>
+      'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.';
+
+  @override
   String get folderContentView_selectButton => 'Select';
 
   @override
   String get folderContentView_stageTextures => 'Stage Textures';
+
+  @override
+  String get folderContentView_scanAndStageTextures => 'Scan & Stage Textures';
 
   @override
   String get createCustomSequences_addCustomSequences => 'Add Custom Sequences';
@@ -127,6 +134,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createCustomSequences_stageFiles => 'Stage Files';
+
+  @override
+  String get createCustomSequences_scanAndStageFiles => 'Scan & Stage Files';
+
+  @override
+  String get createCustomSequences_keepFolderOpenToggle =>
+      'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.';
 
   @override
   String get createFinishScreen_finish => 'Finish';
@@ -158,6 +172,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createCustomScreen_stageFiles => 'Stage Files';
+
+  @override
+  String get createCustomScreen_scanAndStageFiles => 'Scan & Stage Files';
+
+  @override
+  String get createCustomScreen_keepFolderOpenToggle =>
+      'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.';
 
   @override
   String get inspectOtrScreen_inspectOtr => 'Inspect OTR / O2R';

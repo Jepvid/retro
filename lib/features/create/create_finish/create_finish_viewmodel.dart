@@ -28,6 +28,7 @@ class CreateFinishViewModel with ChangeNotifier {
   bool isGenerating = false;
   bool prependAlt = false;
   bool compressFiles = false;
+  bool keepFolderOpenAfterStaging = false;
   int totalFiles = 0;
   int filesProcessed = 0;
 
@@ -48,6 +49,11 @@ class CreateFinishViewModel with ChangeNotifier {
 
   Future<void> onToggleCompressFiles(bool newCompressFilesValue) async {
     compressFiles = newCompressFilesValue;
+    notifyListeners();
+  }
+
+  Future<void> onToggleKeepFolderOpenAfterStaging(bool newValue) async {
+    keepFolderOpenAfterStaging = newValue;
     notifyListeners();
   }
 
