@@ -117,6 +117,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get folderContentView_stageTextures => 'Agregar texturas';
 
   @override
+  String get folderContentView_scanAndStageTextures =>
+      'Escanear y agregar texturas';
+
+  @override
   String get createCustomSequences_addCustomSequences =>
       'Agregar secuencias personalizadas';
 
@@ -133,6 +137,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get createCustomSequences_stageFiles => 'Agregar archivos';
+
+  @override
+  String get createCustomSequences_scanAndStageFiles =>
+      'Escanear y agregar archivos';
 
   @override
   String get createCustomSequences_keepFolderOpenToggle =>
@@ -169,6 +177,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get createCustomScreen_stageFiles => 'Agregar archivos';
+
+  @override
+  String get createCustomScreen_scanAndStageFiles =>
+      'Escanear y agregar archivos';
 
   @override
   String get createCustomScreen_keepFolderOpenToggle =>

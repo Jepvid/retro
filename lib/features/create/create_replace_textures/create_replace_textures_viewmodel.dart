@@ -64,6 +64,11 @@ class CreateReplaceTexturesViewModel extends ChangeNotifier {
     }
   }
 
+  void clearProcessedFiles() {
+    processedFiles = HashMap();
+    notifyListeners();
+  }
+
   void onUpdateStep(CreateReplacementTexturesStep step) {
     currentStep = step;
     notifyListeners();

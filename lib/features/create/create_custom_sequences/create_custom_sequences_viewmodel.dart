@@ -35,6 +35,11 @@ class CreateCustomSequencesViewModel extends ChangeNotifier {
     }
   }
 
+  void clearSequenceMetaPairs() {
+    sequenceMetaPairs = [];
+    notifyListeners();
+  }
+
   Future<void> onSelectFolder() async {
     final selectedDirectory = await FilePicker.platform.getDirectoryPath();
 

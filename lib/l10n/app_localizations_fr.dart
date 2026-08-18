@@ -117,6 +117,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get folderContentView_stageTextures => 'Indexer les textures';
 
   @override
+  String get folderContentView_scanAndStageTextures =>
+      'Scanner et indexer les textures';
+
+  @override
   String get createCustomSequences_addCustomSequences =>
       'Ajouter des séquences personnalisées';
 
@@ -133,6 +137,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get createCustomSequences_stageFiles => 'Indexer les fichiers';
+
+  @override
+  String get createCustomSequences_scanAndStageFiles =>
+      'Scanner et indexer les fichiers';
 
   @override
   String get createCustomSequences_keepFolderOpenToggle =>
@@ -169,6 +177,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get createCustomScreen_stageFiles => 'Indexer les fichiers';
+
+  @override
+  String get createCustomScreen_scanAndStageFiles =>
+      'Scanner et indexer les fichiers';
 
   @override
   String get createCustomScreen_keepFolderOpenToggle =>

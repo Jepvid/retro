@@ -115,6 +115,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get folderContentView_stageTextures => 'Stage-Textures';
 
   @override
+  String get folderContentView_scanAndStageTextures => 'Scannen en stagen';
+
+  @override
   String get createCustomSequences_addCustomSequences =>
       'Voeg aangepaste composities toe';
 
@@ -130,6 +133,9 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get createCustomSequences_stageFiles => 'Stage-bestanden';
+
+  @override
+  String get createCustomSequences_scanAndStageFiles => 'Scannen en stagen';
 
   @override
   String get createCustomSequences_keepFolderOpenToggle =>
@@ -167,6 +173,9 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get createCustomScreen_stageFiles => 'Stage-bestanden';
+
+  @override
+  String get createCustomScreen_scanAndStageFiles => 'Scannen en stagen';
 
   @override
   String get createCustomScreen_keepFolderOpenToggle =>

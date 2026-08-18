@@ -290,6 +290,12 @@ abstract class AppLocalizations {
   /// **'Stage Textures'**
   String get folderContentView_stageTextures;
 
+  /// No description provided for @folderContentView_scanAndStageTextures.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan & Stage Textures'**
+  String get folderContentView_scanAndStageTextures;
+
   /// No description provided for @createCustomSequences_addCustomSequences.
   ///
   /// In en, this message translates to:
@@ -319,6 +325,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stage Files'**
   String get createCustomSequences_stageFiles;
+
+  /// No description provided for @createCustomSequences_scanAndStageFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan & Stage Files'**
+  String get createCustomSequences_scanAndStageFiles;
 
   /// No description provided for @createCustomSequences_keepFolderOpenToggle.
   ///
@@ -385,6 +397,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stage Files'**
   String get createCustomScreen_stageFiles;
+
+  /// No description provided for @createCustomScreen_scanAndStageFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan & Stage Files'**
+  String get createCustomScreen_scanAndStageFiles;
 
   /// No description provided for @createCustomScreen_keepFolderOpenToggle.
   ///
