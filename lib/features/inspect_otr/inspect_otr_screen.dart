@@ -51,10 +51,35 @@ class _InspectOTRScreenState extends State<InspectOTRScreen> {
                 ),),
                 const SizedBox(width: 12),
                 ElevatedButton(
-                    onPressed: viewModel.onSelectOTR,
+                    onPressed: viewModel.isExtracting ? null : viewModel.onSelectOTR,
                     style: ElevatedButton.styleFrom(
                         minimumSize: const Size(100, 50),),
-                    child: Text(i18n.inspectOtrScreen_selectButton),)
+                    child: Text(i18n.inspectOtrScreen_selectButton),),
+                const SizedBox(width: 12),
+                ElevatedButton(
+                    onPressed: viewModel.selectedOTRPath == null || viewModel.isExtracting
+                        ? null
+                        : () async {
+                            await viewModel.onExtractAll();
+                            if (!context.mounted) {
+                              return;
+                            }
+                            if (viewModel.extractError != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(
+                                    '${i18n.inspectOtrScreen_extractFailed}: ${viewModel.extractError}',),),
+                              );
+                            } else if (viewModel.filesExtracted > 0) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(i18n.inspectOtrScreen_extractComplete)),
+                              );
+                            }
+                          },
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(100, 50),),
+                    child: viewModel.isExtracting
+                        ? Text('${i18n.inspectOtrScreen_extracting} (${viewModel.filesExtracted})')
+                        : Text(i18n.inspectOtrScreen_extractButton),)
               ],),
               if (viewModel.isProcessing || viewModel.filteredFilesInOTR.isNotEmpty)
                 Expanded(

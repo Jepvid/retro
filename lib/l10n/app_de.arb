@@ -56,6 +56,10 @@
     "inspectOtrScreen_noOtrSelected": "Keine OTR / O2R ausgewählt",
     "inspectOtrScreen_selectButton": "Wähle",
     "inspectOtrScreen_search": "Suchen",
+    "inspectOtrScreen_extractButton": "Alles extrahieren",
+    "inspectOtrScreen_extracting": "Extrahiere",
+    "inspectOtrScreen_extractComplete": "Extraktion abgeschlossen",
+    "inspectOtrScreen_extractFailed": "Extraktion des Archivs fehlgeschlagen",
 
     "gameSelectionScreen_title": "Spezifische Werkzeuge",
     "gameSelectionScreen_subtitle": "Wähle das Spiel aus, für das du eine Auswahl treffen möchtest",

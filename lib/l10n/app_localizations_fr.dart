@@ -208,6 +208,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get inspectOtrScreen_search => 'Rechercher';
 
   @override
+  String get inspectOtrScreen_extractButton => 'Tout extraire';
+
+  @override
+  String get inspectOtrScreen_extracting => 'Extraction en cours';
+
+  @override
+  String get inspectOtrScreen_extractComplete => 'Extraction terminée';
+
+  @override
+  String get inspectOtrScreen_extractFailed =>
+      'Échec de l\'extraction de l\'archive';
+
+  @override
   String get gameSelectionScreen_title => 'Outils Spécifiques au Jeu';
 
   @override

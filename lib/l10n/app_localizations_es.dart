@@ -209,6 +209,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get inspectOtrScreen_search => 'Buscar';
 
   @override
+  String get inspectOtrScreen_extractButton => 'Extraer todo';
+
+  @override
+  String get inspectOtrScreen_extracting => 'Extrayendo';
+
+  @override
+  String get inspectOtrScreen_extractComplete => 'Extracción completa';
+
+  @override
+  String get inspectOtrScreen_extractFailed => 'Error al extraer el archivo';
+
+  @override
   String get gameSelectionScreen_title => 'Herramientas Específicas';
 
   @override

@@ -56,6 +56,10 @@
     "inspectOtrScreen_noOtrSelected": "Geen OTR / O2R geselecteerd",
     "inspectOtrScreen_selectButton": "Selecteer",
     "inspectOtrScreen_search": "Zoek",
+    "inspectOtrScreen_extractButton": "Alles uitpakken",
+    "inspectOtrScreen_extracting": "Uitpakken",
+    "inspectOtrScreen_extractComplete": "Uitpakken voltooid",
+    "inspectOtrScreen_extractFailed": "Uitpakken van archief mislukt",
 
     "gameSelectionScreen_title": "Specifieke Tools",
     "gameSelectionScreen_subtitle": "Selecteer het spel waarvoor je een selectie wilt maken",

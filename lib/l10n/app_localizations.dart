@@ -446,6 +446,30 @@ abstract class AppLocalizations {
   /// **'Search'**
   String get inspectOtrScreen_search;
 
+  /// No description provided for @inspectOtrScreen_extractButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Extract All'**
+  String get inspectOtrScreen_extractButton;
+
+  /// No description provided for @inspectOtrScreen_extracting.
+  ///
+  /// In en, this message translates to:
+  /// **'Extracting'**
+  String get inspectOtrScreen_extracting;
+
+  /// No description provided for @inspectOtrScreen_extractComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Extraction complete'**
+  String get inspectOtrScreen_extractComplete;
+
+  /// No description provided for @inspectOtrScreen_extractFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to extract archive'**
+  String get inspectOtrScreen_extractFailed;
+
   /// No description provided for @gameSelectionScreen_title.
   ///
   /// In en, this message translates to:

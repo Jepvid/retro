@@ -203,6 +203,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get inspectOtrScreen_search => 'Zoek';
 
   @override
+  String get inspectOtrScreen_extractButton => 'Alles uitpakken';
+
+  @override
+  String get inspectOtrScreen_extracting => 'Uitpakken';
+
+  @override
+  String get inspectOtrScreen_extractComplete => 'Uitpakken voltooid';
+
+  @override
+  String get inspectOtrScreen_extractFailed => 'Uitpakken van archief mislukt';
+
+  @override
   String get gameSelectionScreen_title => 'Specifieke Tools';
 
   @override

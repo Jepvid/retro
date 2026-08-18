@@ -202,6 +202,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get inspectOtrScreen_search => 'Search';
 
   @override
+  String get inspectOtrScreen_extractButton => 'Extract All';
+
+  @override
+  String get inspectOtrScreen_extracting => 'Extracting';
+
+  @override
+  String get inspectOtrScreen_extractComplete => 'Extraction complete';
+
+  @override
+  String get inspectOtrScreen_extractFailed => 'Failed to extract archive';
+
+  @override
   String get gameSelectionScreen_title => 'Game Specific Tools';
 
   @override
