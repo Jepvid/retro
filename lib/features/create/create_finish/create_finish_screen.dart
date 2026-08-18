@@ -96,6 +96,27 @@ class _CreateFinishBottomBarModalState
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(i18n.createFinishScreen_outputFormat,
+                              style: textTheme.bodyMedium),
+                          const SizedBox(width: 10),
+                          SegmentedButton<String>(
+                            segments: const [
+                              ButtonSegment(value: 'o2r', label: Text('.o2r')),
+                              ButtonSegment(value: 'otr', label: Text('.otr')),
+                            ],
+                            selected: {viewModel.outputExtension},
+                            onSelectionChanged: (selection) {
+                              viewModel.onSelectOutputExtension(selection.first);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
                       child: ElevatedButton(
                         onPressed: viewModel.entries.isNotEmpty
                             ? () {
@@ -128,7 +149,11 @@ class _CreateFinishBottomBarModalState
                                   )
                                 ],
                               )
-                            : Text(i18n.createFinishScreen_generateOtr, style: TextStyle(color: Colors.white)),
+                            : Text(
+                                i18n.createFinishScreen_generateFile(
+                                    '.${viewModel.outputExtension}'),
+                                style: TextStyle(color: Colors.white),
+                              ),
                       ),
                     ),
                   ],

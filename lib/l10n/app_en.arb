@@ -40,7 +40,15 @@
     "createCustomSequences_keepFolderOpenToggle": "Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.",
     "createFinishScreen_finish": "Finish",
     "createFinishScreen_finishSubtitle": "Review your OTR / O2R details",
-    "createFinishScreen_generateOtr": "Generate OTR / O2R",
+    "createFinishScreen_generateFile": "Generate {extension}",
+    "@createFinishScreen_generateFile": {
+        "placeholders": {
+            "extension": {
+                "type": "String"
+            }
+        }
+    },
+    "createFinishScreen_outputFormat": "Output format",
     "components_ephemeralBar_finalizeOtr": "Finalize OTR / O2R ⚡️",
     "createCustomScreen_title": "Custom Directory",
     "createCustomScreen_subtitle": "Select directory to pack as .otr",

@@ -149,7 +149,12 @@ class AppLocalizationsNl extends AppLocalizations {
       'Controleer jouw OTR / O2R-gegevens';
 
   @override
-  String get createFinishScreen_generateOtr => 'Generate OTR / O2R';
+  String createFinishScreen_generateFile(String extension) {
+    return 'Genereer $extension';
+  }
+
+  @override
+  String get createFinishScreen_outputFormat => 'Uitvoerformaat';
 
   @override
   String get components_ephemeralBar_finalizeOtr =>

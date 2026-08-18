@@ -350,11 +350,17 @@ abstract class AppLocalizations {
   /// **'Review your OTR / O2R details'**
   String get createFinishScreen_finishSubtitle;
 
-  /// No description provided for @createFinishScreen_generateOtr.
+  /// No description provided for @createFinishScreen_generateFile.
   ///
   /// In en, this message translates to:
-  /// **'Generate OTR / O2R'**
-  String get createFinishScreen_generateOtr;
+  /// **'Generate {extension}'**
+  String createFinishScreen_generateFile(String extension);
+
+  /// No description provided for @createFinishScreen_outputFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Output format'**
+  String get createFinishScreen_outputFormat;
 
   /// No description provided for @components_ephemeralBar_finalizeOtr.
   ///

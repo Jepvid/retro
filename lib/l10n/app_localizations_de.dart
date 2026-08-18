@@ -153,7 +153,12 @@ class AppLocalizationsDe extends AppLocalizations {
       'Übersicht über deine OTR / O2R Details';
 
   @override
-  String get createFinishScreen_generateOtr => 'Generiere OTR / O2R';
+  String createFinishScreen_generateFile(String extension) {
+    return 'Generiere $extension';
+  }
+
+  @override
+  String get createFinishScreen_outputFormat => 'Ausgabeformat';
 
   @override
   String get components_ephemeralBar_finalizeOtr => 'Vollende OTR / O2R ⚡️';
