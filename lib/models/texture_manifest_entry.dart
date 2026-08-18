@@ -31,8 +31,7 @@ class TextureManifestEntry {
   String? targetName;
 
   /// Content hash of the source file as of the most recent scan. Not
-  /// persisted to the manifest; used at runtime to avoid re-staging a file
-  /// whose content hasn't changed since it was last staged.
+  /// persisted to the manifest.
   String? sourceHash;
 
   Map<String, dynamic> toJson() => {

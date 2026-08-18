@@ -32,8 +32,7 @@ class CreateReplaceTexturesViewModel extends ChangeNotifier {
   bool isProcessing = false;
   HashMap<String, dynamic> processedFiles = HashMap();
 
-  // Content hash of each target texture path as of its last staging, so a
-  // rescan of the same folder doesn't re-stage unchanged files.
+  // Content hash of each target texture path as of its last staging.
   final Map<String, String> stagedHashes = {};
 
   String fontData = 'assets/FontData';
@@ -50,8 +49,7 @@ class CreateReplaceTexturesViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Records the content hash of everything currently in [processedFiles] so
-  /// a subsequent rescan of the same folder won't re-stage it unchanged.
+  /// Records the content hash of everything currently in [processedFiles].
   void recordStagedHashes() {
     for (final filesInFolder
         in processedFiles.values.cast<ProcessedFilesInFolder>()) {
@@ -85,8 +83,7 @@ class CreateReplaceTexturesViewModel extends ChangeNotifier {
   }
 
   /// Re-scans the already-selected folder in place, without prompting the
-  /// user to pick a folder again. Used to let the user keep iterating on
-  /// files after staging instead of returning to the main screen.
+  /// user to pick a folder again.
   Future<void> rescanFolder() async {
     if (selectedFolderPath == null) {
       return;
@@ -267,8 +264,7 @@ Future<HashMap<String, ProcessedFilesInFolder>?> processFolder(
       }
 
       if (stagedHashes[target] == texFileHash) {
-        // Already staged this exact content on a previous pack in this
-        // session; skip it so it isn't added to the archive twice.
+        // Content matches what was already staged.
         continue;
       }
 

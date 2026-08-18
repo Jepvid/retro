@@ -26,7 +26,10 @@ class _CreateCustomSequencesScreenState extends State<CreateCustomSequencesScree
 
     Future<void> onStagePressed() async {
       if (finishViewModel.keepFolderOpenAfterStaging) {
-        // Re-scan first so edits made since the last stage are picked up.
+        if (finishViewModel.entries.isEmpty) {
+          // Staged queue is empty.
+          viewModel.stagedHashes.clear();
+        }
         await viewModel.rescanFolder();
         if (viewModel.sequenceMetaPairs.isNotEmpty) {
           finishViewModel.onAddCustomSequenceEntry(viewModel.sequenceMetaPairs, 'custom/music');

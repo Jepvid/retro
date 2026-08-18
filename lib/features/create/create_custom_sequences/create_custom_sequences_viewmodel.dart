@@ -14,8 +14,7 @@ class CreateCustomSequencesViewModel extends ChangeNotifier {
   List<Tuple2<File, File>> sequenceMetaPairs = [];
   bool isProcessing = false;
 
-  // Content hash of each sequence file as of its last staging, so a rescan
-  // of the same folder doesn't re-stage unchanged files.
+  // Content hash of each sequence file as of its last staging.
   final Map<String, String> stagedHashes = {};
 
   void reset() {
@@ -25,8 +24,7 @@ class CreateCustomSequencesViewModel extends ChangeNotifier {
     stagedHashes.clear();
   }
 
-  /// Records the content hash of everything currently in [sequenceMetaPairs]
-  /// so a subsequent rescan of the same folder won't re-stage it unchanged.
+  /// Records the content hash of everything currently in [sequenceMetaPairs].
   Future<void> recordStagedHashes() async {
     for (final pair in sequenceMetaPairs) {
       final relativePath = p.relative(pair.item1.path, from: selectedFolderPath);
@@ -51,8 +49,7 @@ class CreateCustomSequencesViewModel extends ChangeNotifier {
   }
 
   /// Re-scans the already-selected folder in place, without prompting the
-  /// user to pick a folder again. Used to let the user keep iterating on
-  /// files after staging instead of returning to the main screen.
+  /// user to pick a folder again.
   Future<void> rescanFolder() async {
     if (selectedFolderPath == null) {
       return;
@@ -93,8 +90,7 @@ Future<List<SequenceMetaPair>> listSequenceMetaPairs(
     final relativePath = p.relative(sequenceFile.path, from: folderPath);
     final hash = sha256.convert(await (sequenceFile as File).readAsBytes()).toString();
     if (stagedHashes[relativePath] == hash) {
-      // Already staged this exact content on a previous pack in this
-      // session; skip it so it isn't added to the archive twice.
+      // Content matches what was already staged.
       continue;
     }
 

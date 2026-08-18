@@ -18,7 +18,10 @@ Widget FolderContent(
 
   Future<void> onStagePressed() async {
     if (finishViewModel.keepFolderOpenAfterStaging) {
-      // Re-scan first so edits made since the last stage are picked up.
+      if (finishViewModel.entries.isEmpty) {
+        // Staged queue is empty.
+        viewModel.stagedHashes.clear();
+      }
       await viewModel.rescanFolder();
       if (viewModel.processedFiles.isNotEmpty) {
         finishViewModel.onAddCustomTextureEntry(viewModel.processedFiles as HashMap<String, List<Tuple2<File, TextureManifestEntry>>>);
