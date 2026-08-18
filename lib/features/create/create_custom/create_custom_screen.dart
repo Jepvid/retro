@@ -80,17 +80,32 @@ class _CreateCustomScreenState extends State<CreateCustomScreen> {
                   },
                 ),
               ),
+              Row(children: [
+                Switch(
+                  activeColor: Colors.blue,
+                  value: finishViewModel.keepFolderOpenAfterStaging,
+                  onChanged: (value) {
+                    finishViewModel.onToggleKeepFolderOpenAfterStaging(value);
+                  },
+                ),
+                Text(i18n.createCustomScreen_keepFolderOpenToggle),
+              ],),
               ElevatedButton(
                 onPressed: viewModel.files.isNotEmpty && viewModel.path.isNotEmpty
-                    ? () {
+                    ? () async {
                         finishViewModel.onAddCustomStageEntries(
                           viewModel.files,
                           viewModel.path,
                         );
-                        viewModel.reset();
-                        Navigator.of(context).popUntil(
-                          ModalRoute.withName('/create_selection'),
-                        );
+                        if (finishViewModel.keepFolderOpenAfterStaging) {
+                          await viewModel.recordStagedHashes();
+                          await viewModel.rescanFiles();
+                        } else {
+                          viewModel.reset();
+                          Navigator.of(context).popUntil(
+                            ModalRoute.withName('/create_selection'),
+                          );
+                        }
                       }
                     : null,
                 style: ElevatedButton.styleFrom(

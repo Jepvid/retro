@@ -32,6 +32,10 @@ class CreateReplaceTexturesViewModel extends ChangeNotifier {
   bool isProcessing = false;
   HashMap<String, dynamic> processedFiles = HashMap();
 
+  // Content hash of each target texture path as of its last staging, so a
+  // rescan of the same folder doesn't re-stage unchanged files.
+  final Map<String, String> stagedHashes = {};
+
   String fontData = 'assets/FontData';
   String fontTLUT = 'assets/FontTLUT[%d].png';
   String fontTextureName = 'textures/font/sGfxPrintFontData';
@@ -42,7 +46,22 @@ class CreateReplaceTexturesViewModel extends ChangeNotifier {
     selectedOTRPaths = [];
     isProcessing = false;
     processedFiles = HashMap();
+    stagedHashes.clear();
     notifyListeners();
+  }
+
+  /// Records the content hash of everything currently in [processedFiles] so
+  /// a subsequent rescan of the same folder won't re-stage it unchanged.
+  void recordStagedHashes() {
+    for (final filesInFolder
+        in processedFiles.values.cast<ProcessedFilesInFolder>()) {
+      for (final pair in filesInFolder) {
+        final entry = pair.item2;
+        if (entry.targetName != null && entry.sourceHash != null) {
+          stagedHashes[entry.targetName!] = entry.sourceHash!;
+        }
+      }
+    }
   }
 
   void onUpdateStep(CreateReplacementTexturesStep step) {
@@ -55,19 +74,37 @@ class CreateReplaceTexturesViewModel extends ChangeNotifier {
 
     if (selectedDirectory != null) {
       selectedFolderPath = p.normalize(selectedDirectory);
-      isProcessing = true;
-      notifyListeners();
-
-      final processedFiles = await compute(processFolder, selectedFolderPath!);
-      if (processedFiles == null) {
-        log('Error processing folder: $selectedFolderPath');
-      } else {
-        this.processedFiles = processedFiles;
-      }
-
-      isProcessing = false;
-      notifyListeners();
+      stagedHashes.clear();
+      await _scanFolder();
     }
+  }
+
+  /// Re-scans the already-selected folder in place, without prompting the
+  /// user to pick a folder again. Used to let the user keep iterating on
+  /// files after staging instead of returning to the main screen.
+  Future<void> rescanFolder() async {
+    if (selectedFolderPath == null) {
+      return;
+    }
+    await _scanFolder();
+  }
+
+  Future<void> _scanFolder() async {
+    isProcessing = true;
+    notifyListeners();
+
+    final processedFiles = await compute(
+      processFolder,
+      Tuple2(selectedFolderPath!, stagedHashes),
+    );
+    if (processedFiles == null) {
+      log('Error processing folder: $selectedFolderPath');
+    } else {
+      this.processedFiles = processedFiles;
+    }
+
+    isProcessing = false;
+    notifyListeners();
   }
 
   Future<void> onSelectOTR() async {
@@ -157,7 +194,9 @@ class CreateReplaceTexturesViewModel extends ChangeNotifier {
 }
 
 Future<HashMap<String, ProcessedFilesInFolder>?> processFolder(
-    String folderPath) async {
+    Tuple2<String, Map<String, String>> params) async {
+  final folderPath = params.item1;
+  final stagedHashes = params.item2;
   final processedFiles = HashMap<String, ProcessedFilesInFolder>();
 
   // search for and load manifest.json
@@ -210,9 +249,10 @@ Future<HashMap<String, ProcessedFilesInFolder>?> processFolder(
         continue;
       }
 
+      final texFileBytes = await texFile.readAsBytes();
+      final texFileHash = sha256.convert(texFileBytes).toString();
+
       if (manifestEntry.kind == TextureEntryKind.replacement) {
-        final texFileBytes = await texFile.readAsBytes();
-        final texFileHash = sha256.convert(texFileBytes).toString();
         if (manifestEntry.hash == texFileHash) {
           continue;
         }
@@ -221,7 +261,14 @@ Future<HashMap<String, ProcessedFilesInFolder>?> processFolder(
         log('Staging additive texture: $target');
       }
 
+      if (stagedHashes[target] == texFileHash) {
+        // Already staged this exact content on a previous pack in this
+        // session; skip it so it isn't added to the archive twice.
+        continue;
+      }
+
       manifestEntry.targetName = target;
+      manifestEntry.sourceHash = texFileHash;
       final pathWithoutFilename = path.dirname(target);
 
       if (processedFiles.containsKey(pathWithoutFilename)) {

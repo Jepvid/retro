@@ -54,6 +54,16 @@ Widget FolderContent(
         ),
         Text(i18n.folderContentView_compressToggle),
       ],),
+      Row(children: [
+        Switch(
+          activeColor: Colors.blue,
+          value: finishViewModel.keepFolderOpenAfterStaging,
+          onChanged: (value) {
+            finishViewModel.onToggleKeepFolderOpenAfterStaging(value);
+          },
+        ),
+        Text(i18n.folderContentView_keepFolderOpenToggle),
+      ],),
       if (viewModel.processedFiles.isEmpty && viewModel.isProcessing == false)
         const Spacer(),
       if (viewModel.processedFiles.isNotEmpty || viewModel.isProcessing)
@@ -72,10 +82,15 @@ Widget FolderContent(
       Padding(
         padding: const EdgeInsets.only(top: 20),
         child: ElevatedButton(
-          onPressed: viewModel.processedFiles.isNotEmpty ? () {
+          onPressed: viewModel.processedFiles.isNotEmpty ? () async {
             finishViewModel.onAddCustomTextureEntry(viewModel.processedFiles as HashMap<String, List<Tuple2<File, TextureManifestEntry>>>);
-            viewModel.reset();
-            Navigator.of(context).popUntil(ModalRoute.withName('/create_selection'));
+            if (finishViewModel.keepFolderOpenAfterStaging) {
+              viewModel.recordStagedHashes();
+              await viewModel.rescanFolder();
+            } else {
+              viewModel.reset();
+              Navigator.of(context).popUntil(ModalRoute.withName('/create_selection'));
+            }
           } : null,
           style: ElevatedButton.styleFrom(minimumSize: Size(
             MediaQuery.of(context).size.width * 0.5, 50,),

@@ -272,6 +272,12 @@ abstract class AppLocalizations {
   /// **'Compress Files. This will reduce the size of the OTR / O2R.'**
   String get folderContentView_compressToggle;
 
+  /// No description provided for @folderContentView_keepFolderOpenToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.'**
+  String get folderContentView_keepFolderOpenToggle;
+
   /// No description provided for @folderContentView_selectButton.
   ///
   /// In en, this message translates to:
@@ -313,6 +319,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stage Files'**
   String get createCustomSequences_stageFiles;
+
+  /// No description provided for @createCustomSequences_keepFolderOpenToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.'**
+  String get createCustomSequences_keepFolderOpenToggle;
 
   /// No description provided for @createFinishScreen_finish.
   ///
@@ -373,6 +385,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stage Files'**
   String get createCustomScreen_stageFiles;
+
+  /// No description provided for @createCustomScreen_keepFolderOpenToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep folder open after staging. Retro will rescan for changes instead of returning to the main menu.'**
+  String get createCustomScreen_keepFolderOpenToggle;
 
   /// No description provided for @inspectOtrScreen_inspectOtr.
   ///
